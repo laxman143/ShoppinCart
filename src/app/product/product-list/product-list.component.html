@@ -1,0 +1,31 @@
+
+<div class="container">
+    <div class="table-responsive-xxl">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>     
+            <th scope="col">Stock</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">TotalPrice</th>
+            <th scope="col">Message</th>
+            <th scope="col">Add Cart</th>
+            <th scope="col">Delete Cart</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor= "let product of productList">
+            <th>{{product.title}}</th>          
+            <th>{{product.stock}}</th>
+            <th>{{product.price}}</th>
+            <th><input type="text" maxlength="2" (keypress)="onlyNumberAllowed($event)" (keyup)="addQuantity(product)" [value]="product.quantity" [(ngModel)]="product.quantity"/></th>
+            <th>{{product.totalPrice}}</th>
+            <td><span appNgColor [color]="product.quantity > product.stock  ? 'white' : product.quantity < 5 ? 'red' : product.quantity >=5 && product.quantity <= 10 ? 'yellow': product.quantity > 10 &&  product.quantity <= 50 ? 'green' : 'white' "> {{product.message}} </span></td>
+            <td><button class="btn btn-primary" (click)="addToCart(product)" [disabled]="product.quantity < 5 || product.quantity > 50 || (product.quantity > product.stock)">{{product.isAddedInCart ? 'Update cart' : 'Add to cart'}}</button></td>
+            <td><button class="btn btn-primary" (click)="deleteToCart(product)" [disabled]="!product.isAddedInCart || (product.quantity > product.stock)">Delete Cart</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>
