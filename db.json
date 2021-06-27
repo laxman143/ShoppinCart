@@ -21,7 +21,7 @@
       "id":1,
       "title":"Computer",
       "price":200,
-      "stock":40,
+      "stock":100,
       "quantity":"",
       "totalPrice":0
     },
